@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Aaru’s New Year Magic ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ===== ULTRA PREMIUM BACKGROUND ===== */
+
+/* Layer 1: Animated Gradient */
+
+/* ===== START SCREEN PREMIUM ===== */
+/* Hide extra backgrounds on start screen */
+.start-screen~.bg-gradient,
+.start-screen~.jee-inspired-bg {
+  display: none;
+}
+/* ===== CINEMATIC START BACKGROUND ===== */
+.start-screen::before{
+  content:"";
+  position: fixed;
+  inset: -30%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,110,196,0.35), transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(120,115,245,0.35), transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(74,222,222,0.3), transparent 45%);
+  filter: blur(60px);
+  animation: cinematicFloat 10s ease-in-out infinite alternate;
+  z-index: -1;
+}
+
+@keyframes cinematicFloat{
+  from{transform: translateY(-20px) scale(1);}
+  to{transform: translateY(20px) scale(1.1);}
+}
+
+.start-card {
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(18px);
+  padding: 38px 32px;
+  border-radius: 26px;
+  text-align: center;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.45),
+    0 0 60px rgba(255, 110, 196, 0.25);
+  animation: startFade 1.6s ease;
+}
+@keyframes startFade{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+.start-line{
+  margin-top: 15px;
+  font-size: 1.05rem;
+  opacity: 0.95;
+}
+
+.only-text{
+  margin-top: 12px;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+/* Unlock Button Heartbeat */
+.unlock-btn {
+  margin-top: 24px;
+  animation: unlockPulse 1.8s infinite;
+  box-shadow: 0 0 25px rgba(255, 110, 196, 0.6);
+}
+
+@keyframes unlockPulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.08);}
+  100%{transform:scale(1);}
+}
+
+/* Tiny signature */
+.made-text{
+  display: block;
+  margin-top: 18px;
+  font-size: 0.75rem;
+  opacity: 0.6;
+  letter-spacing: 1px;
+}
+.bg-gradient{
+  
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 20%, #ff9aa2, transparent 40%),
+    radial-gradient(circle at 80% 30%, #ffd6e0, transparent 40%),
+    radial-gradient(circle at 50% 80%, #cdb4db, transparent 45%),
+    linear-gradient(135deg, #ff758c, #ff7eb3);
+  background-size: 200% 200%;
+  animation: luxuryMove 18s ease-in-out infinite;
+  z-index:-3;
+}
+
+@keyframes luxuryMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* Layer 2: Particle Canvas */
+#particles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-2;
+}
+
+/* Layer 3: Soft Noise (Premium feel) */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:-1;
+}
+/* ========== GLOBAL ========== */
+*{
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+body{
+  margin:0;
+  height:100vh;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  color:white;
+  overflow:hidden;
+}
+section {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.9s cubic-bezier(.4, 0, .2, 1), opacity 0.6s;
+}
+/* ===== CINEMATIC COUNTDOWN ===== */
+.count-title{
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.count-wrapper{
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 10px 0 20px;
+}
+
+.count-number{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  font-weight: 700;
+  text-shadow: 0 0 25px rgba(255,255,255,0.8);
+  animation: pulseCount 1s infinite;
+}
+
+@keyframes pulseCount{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.15);}
+  100%{transform:scale(1);}
+}
+
+/* circular ring */
+.ring circle{
+  fill: none;
+  stroke: rgba(255,255,255,0.4);
+  stroke-width: 8;
+  stroke-dasharray: 565;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s linear;
+  filter: drop-shadow(0 0 15px rgba(255,255,255,0.6));
+}
+
+/* countdown vibe text */
+.count-line{
+  font-size: 0.95rem;
+  opacity: 0.85;
+  margin-top: 10px;
+}
+
+/* FINAL 3 seconds effect */
+.countdown-shake{
+  animation: shake 0.3s infinite;
+}
+
+@keyframes shake{
+  0%{transform:translateX(0);}
+  25%{transform:translateX(-3px);}
+  50%{transform:translateX(3px);}
+  75%{transform:translateX(-3px);}
+  100%{transform:translateX(0);}
+}
+section.active {
+  transform: translateX(0);
+  opacity: 1;
+  z-index: 5;
+}
+
+section.exit-left {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+button{
+  margin-top:20px;
+  padding:12px 28px;
+  border:none;
+  border-radius:30px;
+  background:white;
+  color:#ff4d6d;
+  font-size:1rem;
+  cursor:pointer;
+  transition:.3s;
+}
+button:hover{transform:scale(1.1);}
+.glow{text-shadow:0 0 20px #fff;}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:scale(.95);}
+  to{opacity:1;transform:scale(1);}
+}
+
+/* ========== FIREWORKS ========== */
+#fireworks{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ========== FINAL NICKNAME ========== */
+.nickname{
+  font-size:3.2rem;
+  font-weight:700;
+  animation:heartbeat 1.5s infinite, glowPulse 2s infinite;
+}
+@keyframes heartbeat{
+  0%{transform:scale(1)}
+  25%{transform:scale(1.1)}
+  50%{transform:scale(1)}
+  75%{transform:scale(1.08)}
+}
+@keyframes glowPulse{
+  0%{text-shadow:0 0 10px #fff}
+  50%{text-shadow:0 0 30px #ff4d6d}
+  100%{text-shadow:0 0 10px #fff}
+}
+
+/* ========== TEXT ========== */
+p{
+  max-width:600px;
+  line-height:1.8;
+  font-size:1.05rem;
+}
+#typing{
+  white-space:pre-line;
+}
+
+/* ===== LUXURY TEXT BOX ===== */
+.luxury-box{
+  position: relative;
+  width: 90%;
+  max-width: 650px;
+  padding: 3px; /* border thickness */
+  border-radius: 20px;
+  background: linear-gradient(
+    120deg,
+    #ff4d6d,
+    #ffd6e0,
+    #cdb4db,
+    #ff758c
+  );
+  background-size: 300% 300%;
+  animation: borderGlow 6s ease infinite;
+}
+
+/* inner content */
+.typing-box{
+  max-height: 55vh;
+  padding: 20px;
+  border-radius: 18px;
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(10px);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.typing-box::-webkit-scrollbar{
+  display: none;
+}
+
+/* glowing animation */
+@keyframes borderGlow{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* button always visible */
+.continue-btn{
+  position: fixed;
+  bottom: 25px;
+}
+
+/* ===== FINAL PAGE LUXURY BOX ===== */
+.final-luxury-box{
+  position: relative;
+  width: 90%;
+  max-width: 650px;
+  padding: 4px; /* border thickness */
+  margin-top: 20px;
+  border-radius: 22px;
+
+  background: linear-gradient(
+    120deg,
+    #ff004c,
+    #ff7eb3,
+    #7f7fff,
+    #00ffd5,
+    #ff004c
+  );
+  background-size: 400% 400%;
+  animation:
+    rgbFlow 6s linear infinite,
+    heartbeatPulse 2.2s ease-in-out infinite;
+}
+
+/* inner glass */
+.final-box-inner{
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 22px;
+  text-align: center;
+}
+
+/* RGB animation */
+@keyframes rgbFlow{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* Heartbeat pulse */
+@keyframes heartbeatPulse{
+  0%{transform:scale(1);}
+  25%{transform:scale(1.015);}
+  50%{transform:scale(1);}
+  75%{transform:scale(1.02);}
+  100%{transform:scale(1);}
+}
+
+/* ===== JEE BLOG INSPIRED – PREMIUM ROMANTIC BG ===== */
+.jee-inspired-bg{
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    270deg,
+    #ff6ec4,
+    #ff758c,
+    #c77dff,
+    #4adede,
+    #ff9a9e
+  );
+  background-size: 800% 800%;
+  animation: jeeGradientMove 20s ease infinite;
+  z-index: -4;
+}
+
+@keyframes jeeGradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* particles layer */
+#jee-particles{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -3;
+}
+
+/* ===== RGB RING ANIMATION ===== */
+@keyframes rgbRotate {
+  0% { stroke: hsl(0,100%,70%); }
+  25% { stroke: hsl(90,100%,70%); }
+  50% { stroke: hsl(180,100%,70%); }
+  75% { stroke: hsl(270,100%,70%); }
+  100% { stroke: hsl(360,100%,70%); }
+}
+
+.ring circle{
+  animation: rgbRotate 3s linear infinite;
+}
+</style>
+</head>
+
+<body>
+  <!-- Inspired Premium Gradient Background -->
+<div class="jee-inspired-bg"></div>
+<canvas id="jee-particles"></canvas>
+  <!-- Premium Background Layers -->
+<div class="bg-gradient"></div>
+<canvas id="particles"></canvas>
+
+<canvas id="fireworks"></canvas>
+<audio id="bgm" src="music.mp3" loop></audio>
+
+<!-- 🔐 LOCK -->
+<section id="s0" class="active start-screen">
+  
+  <div class="start-card">
+    <h1 class="glow">🔐 A Little Surprise</h1>
+    
+    <p class="start-line">
+      Before the new year begins…<br>
+      there’s something just for you 🤍
+    </p>
+    
+    <p class="only-text">
+      Only for <b>my love(Aaru) 💖</b>
+    </p>
+    
+    <button class="unlock-btn" onclick="next()">Unlock 💫</button>
+    
+    <span class="made-text">made with real feelings ✨</span>
+  </div>
+  
+</section>
+<!-- ⏳ COUNTDOWN -->
+<section id="s1">
+  <h1 class="count-title">The Moment is Coming… ✨</h1>
+
+<div class="count-wrapper">
+  <svg class="ring" width="200" height="200">
+    <circle cx="100" cy="100" r="90"></circle>
+  </svg>
+  
+  <div id="timer" class="count-number">5</div>
+</div>
+
+<p class="count-line">
+  Just breathe… something special is on the way 🤍
+</p>
+</section>
+
+<!-- 💌 LETTER -->
+<section id="s2">
+  <h1 class="glow">Dear Aaru ❤️</h1>
+  <div class="luxury-box">
+  <div class="typing-box">
+    <p id="typing"></p>
+  </div>
+</div>
+
+<button class="continue-btn" onclick="next()">Continue 💕</button>
+</section>
+
+<!-- 💖 FEEL -->
+<section id="s3">
+  <h2>If you feel loved, tap 💖</h2>
+  <button onclick="burst()">Tap Me 💕</button>
+  <div id="hearts" style="font-size:2rem;margin-top:15px;"></div>
+  <button onclick="next()">Final ✨</button>
+</section>
+
+
+
+<!-- 🎆 FINAL -->
+<section id="s4">
+  <h1 class="nickname">Aaru ❤️</h1>
+<div class="final-luxury-box">
+  <div class="final-box-inner">
+    <p>
+      Happy New Year, <b>Aaru 🤍</b><br><br>
+
+      aap meri life ka wo sukoon ho  
+      jo bina awaaz ke bhi mehsoos hota hai ✨<br><br>
+
+      Is naye saal mein  
+      main perfection ka wada nahi karta,  
+      par ye wada zaroor karta hoon ki —<br>
+      <b>aapki jagah meri life mein  
+      hamesha special rahegi</b> 💖<br><br>
+
+      Bas itna hi…  
+      aap saath rahiye,  
+      wahi mere liye kaafi hai 🌸
+    </p>
+  </div>
+</div>
+</section>
+
+
+
+<script>
+
+navigator.vibrate && navigator.vibrate(15);
+
+/* ===== PREMIUM FLOATING PARTICLES ===== */
+const pCanvas = document.getElementById("particles");
+const pCtx = pCanvas.getContext("2d");
+
+function resizeParticles() {
+  pCanvas.width = innerWidth;
+  pCanvas.height = innerHeight;
+}
+resizeParticles();
+addEventListener("resize", resizeParticles);
+
+const particles = [];
+const COUNT = 45;
+
+for (let i = 0; i < COUNT; i++) {
+  particles.push({
+    x: Math.random() * pCanvas.width,
+    y: Math.random() * pCanvas.height,
+    r: Math.random() * 2 + 1,
+    vx: (Math.random() - 0.5) * 0.3,
+    vy: (Math.random() - 0.5) * 0.3,
+    o: Math.random() * 0.4 + 0.2
+  });
+}
+
+function animateParticles() {
+  pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+  
+  particles.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+    
+    if (p.x < 0 || p.x > pCanvas.width) p.vx *= -1;
+    if (p.y < 0 || p.y > pCanvas.height) p.vy *= -1;
+    
+    pCtx.beginPath();
+    pCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    pCtx.fillStyle = `rgba(255,255,255,${p.o})`;
+    pCtx.fill();
+  });
+  
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+/* ===== SCREEN FLOW ===== */
+let current=0;
+const screens=document.querySelectorAll("section");
+const music=document.getElementById("bgm");
+
+function show(i) {
+  screens.forEach((s, idx) => {
+    s.classList.remove("active", "exit-left");
+    if (idx < i) s.classList.add("exit-left");
+  });
+  screens[i].classList.add("active");
+}
+function next(){
+  current++;
+  show(current);
+  if(current===1) startCountdown();
+  if(current===2) typeText();
+  if(current===4){
+    music.volume=0.6;
+    music.play().catch(()=>{});
+    startFireworks();
+  }
+}
+
+/* ===== COUNTDOWN ===== */
+function startCountdown() {
+  let t = 5;
+  const el = document.getElementById("timer");
+  const ring = document.querySelector(".ring circle");
+  const section = document.getElementById("s1");
+  
+  const circumference = 565;
+  ring.style.strokeDasharray = circumference;
+  
+  const iv = setInterval(() => {
+    el.innerText = t;
+    
+    // ring progress
+    ring.style.strokeDashoffset =
+      circumference - (t / 5) * circumference;
+    
+    // last 3 seconds drama
+    if (t <= 3) {
+      section.classList.add("countdown-shake");
+      navigator.vibrate && navigator.vibrate(20);
+    }
+    
+    t--;
+    
+    if (t < 0) {
+  clearInterval(iv);
+  section.classList.remove("countdown-shake");
+  
+  // mini fireworks blast 🎆
+  miniFireworksBlast();
+  
+  // flash effect
+  section.style.background =
+    "rgba(255,255,255,0.18)";
+  
+  setTimeout(() => {
+    section.style.background = "";
+    next(); // slide to letter
+  }, 600);
+}
+  }, 1000);
+}
+
+
+
+/* ===== TYPING LETTER ===== */
+const text =
+  `Aaru… my love 😘
+
+Ye sirf ek New Year wish nahi hai 🤍  
+Ye wo baatein hain jo main roz mehsoos karta hoon,  
+par har baar shabdon mein keh nahi paata…
+
+Aap meri life ka wo sukoon ho  
+jise main kabhi khona nahi chahta 🤍  
+
+Kabhi-kabhi lagta hai  
+aap meri life ka wo hissa ho  
+jahan mujhe zyada bolna nahi padta,  
+sirf mehsoos karna hota hai ✨
+
+
+Aaru 💖,
+
+Naya saal aa raha hai,  
+par meri wish wahi hai —  
+aapki smile, aapki baatein,  
+aur aapka saath 🌸  
+
+Aapki ek simple si presence  
+meri poori life ko thoda shaant bana deti hai,  
+jaise sab kuch apni jagah pe aa gaya ho 🤍  
+
+Is naye saal mein  
+main badi-badi baatein  
+ya jhoote promises nahi laaya hoon…  
+bas itna sa sachcha wada hai —  
+
+Main aapko samajhne ki koshish karunga,  
+aapki respect hamesha karunga,  
+aur jab bhi aapko zarurat hogi,  
+main hamesha aapke saath rahunga 🤍  
+
+Aaru,  
+aap ho isliye zindagi  
+thodi zyada meaningful lagti hai 💖  
+
+Bas itna hi…  
+aap saath raho,  
+wahi mere liye sab kuch hai 🌸`;
+let i=0;
+function typeText() {
+  const el = document.getElementById("typing");
+  const box = el.parentElement;
+  
+  if (i < text.length) {
+    el.innerHTML += text.charAt(i++);
+    box.scrollTop = box.scrollHeight; // 🔥 auto scroll
+    setTimeout(typeText, 45);
+  }
+}
+/* ===== HEARTS ===== */
+function burst(){
+  document.getElementById("hearts").innerText="💖 💕 💗 💘 💝 💞";
+}
+
+/* ===== FIREWORKS ===== */
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+function resize(){
+  canvas.width=innerWidth;
+  canvas.height=innerHeight;
+}
+resize(); window.addEventListener("resize",resize);
+
+class Firework{
+  constructor(){
+    this.x=Math.random()*canvas.width;
+    this.y=canvas.height;
+    this.ty=Math.random()*canvas.height/2;
+    this.color=`hsl(${Math.random()*360},100%,60%)`;
+    this.exploded=false;
+    this.p=[];
+  }
+  update(){
+    if(!this.exploded){
+      this.y-=6;
+      if(this.y<=this.ty){
+        this.exploded=true;
+        for(let i=0;i<30;i++){
+          this.p.push({
+            x:this.x,y:this.y,
+            vx:(Math.random()-0.5)*6,
+            vy:(Math.random()-0.5)*6,
+            life:40
+          });
+        }
+      }
+    }else{
+      this.p.forEach(pt=>{
+        pt.x+=pt.vx;
+        pt.y+=pt.vy;
+        pt.life--;
+      });
+    }
+  }
+  draw(){
+    if(!this.exploded){
+      ctx.fillStyle=this.color;
+      ctx.fillRect(this.x,this.y,2,2);
+    }else{
+      this.p.forEach(pt=>{
+        ctx.fillStyle=this.color;
+        ctx.fillRect(pt.x,pt.y,2,2);
+      });
+    }
+  }
+}
+
+let fws=[];
+function startFireworks(){
+  function anim(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    if(Math.random()<0.05) fws.push(new Firework());
+    fws.forEach((f,i)=>{
+      f.update(); f.draw();
+      if(f.exploded && f.p.every(p=>p.life<=0)) fws.splice(i,1);
+    });
+    requestAnimationFrame(anim);
+  }
+  anim();
+}
+/* ===== JEE STYLE SOFT PARTICLES ===== */
+const jCanvas = document.getElementById("jee-particles");
+const jCtx = jCanvas.getContext("2d");
+
+function resizeJee() {
+  jCanvas.width = innerWidth;
+  jCanvas.height = innerHeight;
+}
+resizeJee();
+addEventListener("resize", resizeJee);
+
+const jParticles = [];
+for (let i = 0; i < 70; i++) {
+  jParticles.push({
+    x: Math.random() * jCanvas.width,
+    y: Math.random() * jCanvas.height,
+    r: Math.random() * 2 + 1,
+    vx: (Math.random() - 0.5) * 0.4,
+    vy: (Math.random() - 0.5) * 0.4,
+    o: Math.random() * 0.4 + 0.2
+  });
+}
+
+function animateJeeParticles() {
+  jCtx.clearRect(0, 0, jCanvas.width, jCanvas.height);
+  
+  jParticles.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+    
+    if (p.x < 0 || p.x > jCanvas.width) p.vx *= -1;
+    if (p.y < 0 || p.y > jCanvas.height) p.vy *= -1;
+    
+    jCtx.beginPath();
+    jCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    jCtx.fillStyle = `rgba(255,255,255,${p.o})`;
+    jCtx.fill();
+  });
+  
+  requestAnimationFrame(animateJeeParticles);
+}
+animateJeeParticles();
+
+/* ===== MINI FIREWORKS (COUNTDOWN BLAST) ===== */
+function miniFireworksBlast() {
+  const blasts = 3;
+  for (let i = 0; i < blasts; i++) {
+    setTimeout(() => {
+      for (let j = 0; j < 15; j++) {
+        fws.push(new Firework());
+      }
+    }, i * 120);
+  }
+}
+</script>
+
+</body>
+</html>
